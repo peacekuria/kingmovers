@@ -97,4 +97,4 @@ def bookings_csv(user):
         w.writerow([b.id, b.created_at.isoformat(), b.move_date.isoformat(), b.client.email, b.mover.name, b.pickup_label,
                     b.dropoff_label, b.distance_km, b.items_count, b.total_price, b.status, b.review.stars if b.review else ""])
     return Response(buf.getvalue(), mimetype="text/csv",
-                    headers={"Content-Disposition": f"attachment; filename=smartmove-bookings-{date.today()}.csv"})
+                    headers={"Content-Disposition": f"attachment; filename=kingmoverskenya-bookings-{date.today()}.csv"})

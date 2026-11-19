@@ -26,10 +26,10 @@ def _user(email, name, phone, role):
 def seed():
     if Mover.query.count():
         return "Already seeded."
-    client = _user("client@smartmove.ke", "Wanjiru Kamau", "0712345678", "client")
-    mover_user = _user("mover@smartmove.ke", "Otieno Ochieng", "0722000111", "mover")
-    _user("admin@smartmove.ke", "Admin Achieng", "0733222333", "admin")
-    pending_user = _user("thikaroad@smartmove.ke", "Kamau Njoroge", "0711999888", "mover")
+    client = _user("client@kingmoverskenya.co.ke", "Wanjiru Kamau", "0712345678", "client")
+    mover_user = _user("mover@kingmoverskenya.co.ke", "Otieno Ochieng", "0722000111", "mover")
+    _user("admin@kingmoverskenya.co.ke", "Admin Achieng", "0733222333", "admin")
+    pending_user = _user("thikaroad@kingmoverskenya.co.ke", "Kamau Njoroge", "0711999888", "mover")
 
     created = []
     for i, (name, tag, rating, reviews, base, km, m3, veh, crew, color, (lat, lng, r), avail) in enumerate(MOVERS):

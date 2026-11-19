@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const KEY = 'smartmove-session';
+const KEY = 'kingmoverskenya-session';
 const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } };
 const save = (s) => { try { s.token ? localStorage.setItem(KEY, JSON.stringify(s)) : localStorage.removeItem(KEY); } catch { /* storage blocked */ } };
 

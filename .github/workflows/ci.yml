@@ -9,9 +9,9 @@ jobs:
     services:
       postgres:
         image: postgres:16-alpine
-        env: { POSTGRES_USER: smartmove, POSTGRES_PASSWORD: smartmove, POSTGRES_DB: smartmove }
+        env: { POSTGRES_USER: kingmoverskenya, POSTGRES_PASSWORD: kingmoverskenya, POSTGRES_DB: kingmoverskenya }
         ports: ["5432:5432"]
-        options: --health-cmd "pg_isready -U smartmove" --health-interval 5s --health-retries 10
+        options: --health-cmd "pg_isready -U kingmoverskenya" --health-interval 5s --health-retries 10
     defaults: { run: { working-directory: backend } }
     steps:
       - uses: actions/checkout@v4
@@ -20,7 +20,7 @@ jobs:
       - run: pip install -r requirements.txt pytest
       - run: python -m pytest -q
       - name: Migrations apply cleanly on Postgres
-        env: { DATABASE_URL: "postgresql://smartmove:smartmove@localhost:5432/smartmove" }
+        env: { DATABASE_URL: "postgresql://kingmoverskenya:kingmoverskenya@localhost:5432/kingmoverskenya" }
         run: flask db upgrade && flask seed
 
   frontend:

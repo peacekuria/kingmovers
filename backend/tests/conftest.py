@@ -29,14 +29,14 @@ def login(client, email, password="password"):
 
 @pytest.fixture
 def as_client(client):
-    return login(client, "client@smartmove.ke")
+    return login(client, "client@kingmoverskenya.co.ke")
 
 
 @pytest.fixture
 def as_mover(client):
-    return login(client, "mover@smartmove.ke")
+    return login(client, "mover@kingmoverskenya.co.ke")
 
 
 @pytest.fixture
 def as_admin(client):
-    return login(client, "admin@smartmove.ke")
+    return login(client, "admin@kingmoverskenya.co.ke")

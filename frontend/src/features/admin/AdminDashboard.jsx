@@ -31,7 +31,7 @@ function Overview() {
   const series = st.perMonth.map((v, i) => ({ m: MONTHS[i], v }));
   const max = Math.max(...series.map((s) => s.v), 1);
   const peak = series.reduce((a, b) => (b.v > a.v ? b : a), series[0] || { m: '-', v: 0 });
-  const exportCsv = () => downloadFile('/admin/reports/bookings.csv', token, `smartmove-bookings-${new Date().toISOString().slice(0, 10)}.csv`).catch(() => alert('Export failed. Please try again.'));
+  const exportCsv = () => downloadFile('/admin/reports/bookings.csv', token, `kingmoverskenya-bookings-${new Date().toISOString().slice(0, 10)}.csv`).catch(() => alert('Export failed. Please try again.'));
   const totalRatings = Object.values(st.ratings).reduce((a, b) => a + b, 0);
 
   return (

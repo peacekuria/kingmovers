@@ -6,7 +6,7 @@ import { loggedIn, selectUser } from './authSlice';
 import { useLoginMutation, useRegisterMutation, errorText } from '../../api/api';
 import { home } from '../../components/ProtectedRoute';
 
-const DEMO = [['client', 'client@smartmove.ke'], ['mover', 'mover@smartmove.ke'], ['admin', 'admin@smartmove.ke']];
+const DEMO = [['client', 'client@kingmoverskenya.co.ke'], ['mover', 'mover@kingmoverskenya.co.ke'], ['admin', 'admin@kingmoverskenya.co.ke']];
 
 export default function AuthPage() {
   const [params] = useSearchParams();

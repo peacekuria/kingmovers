@@ -1,13 +1,13 @@
 # Render Blueprint: New → Blueprint → pick this repo. Creates Postgres + the web app.
 databases:
-  - name: smartmove-db
+  - name: kingmoverskenya-db
     plan: basic-256mb
-    databaseName: smartmove
-    user: smartmove
+    databaseName: kingmoverskenya
+    user: kingmoverskenya
 
 services:
   - type: web
-    name: smartmove
+    name: kingmoverskenya
     runtime: docker
     plan: starter
     dockerfilePath: ./Dockerfile
@@ -15,11 +15,11 @@ services:
     autoDeploy: true
     envVars:
       - key: DATABASE_URL
-        fromDatabase: { name: smartmove-db, property: connectionString }
+        fromDatabase: { name: kingmoverskenya-db, property: connectionString }
       - key: JWT_SECRET_KEY
         generateValue: true
       - key: CORS_ORIGINS
-        value: https://smartmove.onrender.com
+        value: https://kingmoverskenya.onrender.com
       - key: SEED_DEMO_DATA
         value: "false"
       - key: GOOGLE_MAPS_API_KEY

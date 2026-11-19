@@ -22,7 +22,7 @@ def test_register_validation_and_login(client):
 
 def test_password_is_hashed(app):
     from app.models import User
-    u = User.query.filter_by(email="client@smartmove.ke").first()
+    u = User.query.filter_by(email="client@kingmoverskenya.co.ke").first()
     assert u.password_hash != "password" and u.check_password("password")
 
 
@@ -105,9 +105,9 @@ def test_mover_registration_and_approval(client, as_admin):
 
 def test_admin_suspend_and_reports(client, as_admin):
     users = client.get("/api/admin/users", headers=as_admin).json["users"]
-    cl = next(u for u in users if u["email"] == "client@smartmove.ke")
+    cl = next(u for u in users if u["email"] == "client@kingmoverskenya.co.ke")
     client.patch(f"/api/admin/users/{cl['id']}", headers=as_admin, json={"active": False})
-    assert client.post("/api/auth/login", json={"email": "client@smartmove.ke", "password": "password"}).status_code == 403
+    assert client.post("/api/auth/login", json={"email": "client@kingmoverskenya.co.ke", "password": "password"}).status_code == 403
     stats = client.get("/api/admin/stats", headers=as_admin).json
     assert stats["bookings"] >= 1 and len(stats["perMonth"]) == date.today().month
     csv = client.get("/api/admin/reports/bookings.csv", headers=as_admin)
@@ -116,8 +116,8 @@ def test_admin_suspend_and_reports(client, as_admin):
 
 def test_login_lockout(client):
     for _ in range(8):
-        assert client.post("/api/auth/login", json={"email": "client@smartmove.ke", "password": "nope"}).status_code == 401
-    r = client.post("/api/auth/login", json={"email": "client@smartmove.ke", "password": "password"})
+        assert client.post("/api/auth/login", json={"email": "client@kingmoverskenya.co.ke", "password": "nope"}).status_code == 401
+    r = client.post("/api/auth/login", json={"email": "client@kingmoverskenya.co.ke", "password": "password"})
     assert r.status_code == 429
 
 

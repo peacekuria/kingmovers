@@ -3,12 +3,12 @@ services:
   db:
     image: postgres:16-alpine
     environment:
-      POSTGRES_USER: smartmove
-      POSTGRES_PASSWORD: smartmove
-      POSTGRES_DB: smartmove
+      POSTGRES_USER: kingmoverskenya
+      POSTGRES_PASSWORD: kingmoverskenya
+      POSTGRES_DB: kingmoverskenya
     volumes: [pgdata:/var/lib/postgresql/data]
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U smartmove"]
+      test: ["CMD-SHELL", "pg_isready -U kingmoverskenya"]
       interval: 5s
       retries: 10
     ports: ["5432:5432"]
@@ -19,7 +19,7 @@ services:
       args:
         VITE_SHOW_DEMO_ACCOUNTS: "true"
     environment:
-      DATABASE_URL: postgresql://smartmove:smartmove@db:5432/smartmove
+      DATABASE_URL: postgresql://kingmoverskenya:kingmoverskenya@db:5432/kingmoverskenya
       JWT_SECRET_KEY: ${JWT_SECRET_KEY:-local-compose-secret-change-me-0123456789abcdef}
       CORS_ORIGINS: http://localhost:8000
       GOOGLE_MAPS_API_KEY: ${GOOGLE_MAPS_API_KEY:-}

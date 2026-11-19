@@ -370,3 +370,8 @@ button, a, select, .btn { touch-action: manipulation; -webkit-tap-highlight-colo
   .snap-row::-webkit-scrollbar { display: none; }
   .snap-row > * { flex: 0 0 78%; scroll-snap-align: start; }
 }
+
+/* Brand wordmark */
+.logo-accent { color: var(--brand); }
+.nav.on-dark .logo-accent, footer .logo-accent { color: #8fb6ff; }
+@media (max-width: 380px) { .logo { font-size: 16px; gap: 8px; } }

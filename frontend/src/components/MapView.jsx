@@ -39,7 +39,7 @@ function FitTo({ points }) {
 export default function MapView({ pickup, dropoff, movers = [], truck, route, onMapClick, tall, zoom = 12, children }) {
   const fit = [pickup, dropoff].filter(Boolean);
   return (
-    <div className={`map-wrap ${tall ? 'tall' : ''}`}>
+    <div className={`map-wrap ${tall ? 'tall' : ''}`} data-lenis-prevent>
       {children}
       <MapContainer center={NAIROBI_CENTER} zoom={zoom} scrollWheelZoom style={{ height: '100%', width: '100%' }}>
         <TileLayer attribution='&copy; OpenStreetMap contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />

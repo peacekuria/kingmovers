@@ -40,9 +40,9 @@ export const TEMPLATES = {
 // Real Nairobi photography (Unsplash License, see public/images/CREDITS.md).
 // Add a matching MP4 under /public/videos to play footage over any photo.
 export const HERO_SLIDES = [
-  { img: '/images/nairobi-kicc.jpg', caption: 'City Hall & KICC, Nairobi CBD', video: '/videos/hero.mp4' },
-  { img: '/images/nairobi-upperhill.jpg', caption: 'Upper Hill at golden hour' },
-  { img: '/images/nairobi-greencity.jpg', caption: 'The green city in the sun' },
+  { img: '/images/nairobi-kicc.jpg', sm: '/images/nairobi-kicc-sm.jpg', caption: 'City Hall & KICC, Nairobi CBD', video: '/videos/hero.mp4' },
+  { img: '/images/nairobi-upperhill.jpg', sm: '/images/nairobi-upperhill-sm.jpg', caption: 'Upper Hill at golden hour' },
+  { img: '/images/nairobi-greencity.jpg', sm: '/images/nairobi-greencity-sm.jpg', caption: 'The green city in the sun' },
 ];
 
 export const CITY_PHOTOS = [

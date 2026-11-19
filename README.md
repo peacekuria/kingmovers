@@ -82,10 +82,13 @@ Put it behind HTTPS (the platforms above do this for you). Geolocation and brows
 - **Modularity:** one Flask blueprint per module (`auth`, `movers`, `inventory`, `quotes`, `bookings`,
   `notifications`, `admin`). Each frontend feature is lazy-loaded behind its own error boundary.
 
-## Videos
+## Photos & video
 
-Drop short, muted MP4 loops into `frontend/public/videos/` (`hero.mp4`, `cbd.mp4`, `westlands.mp4`,
-`expressway.mp4`, `karen.mp4`, `truck.mp4`). Any missing clip falls back to the animated Nairobi skyline.
+The UI uses real Nairobi photography from Unsplash (free licence), stored in `frontend/public/images/`.
+Credits are in `frontend/public/images/CREDITS.md`. The landing hero cycles through the photos with a slow zoom.
+
+To add motion, drop short, muted MP4 loops into `frontend/public/videos/`: `hero.mp4`, `cbd.mp4`, `westlands.mp4`,
+`night.mp4`, `suburbs.mp4`. They play over the matching photo. Any missing clip simply leaves the photo showing.
 Only use footage you own or have a licence for.
 
 ## Git workflow

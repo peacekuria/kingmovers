@@ -72,7 +72,7 @@ export default function QuotePage() {
   );
 
   return (
-    <Page className="container">
+    <Page className="container has-action-bar">
       <span className="eyebrow">Step 2 · Quote & book</span>
       <h1 style={{ fontSize: 'clamp(2rem,5vw,3.2rem)' }}>Price your move</h1>
       <div className="layout-side" style={{ marginTop: 24 }}>
@@ -136,6 +136,16 @@ export default function QuotePage() {
           {user && !totals.count && <p className="error" style={{ marginTop: 8 }}>Your inventory is empty.</p>}
           <p className="muted" style={{ fontSize: 12, marginTop: 10, marginBottom: 0 }}>Final price is confirmed by our server at booking time.</p>
         </div>
+      </div>
+      <div className="action-bar">
+        <div>
+          <div className="muted" style={{ fontSize: 12 }}>{chosen ? chosen.mover.name : 'Estimated total'} · {date}</div>
+          <b style={{ fontSize: 18 }}>KES <AnimatedNumber value={chosen?.quote.total || 0} /></b>
+          {bookErr && <div className="error" style={{ margin: 0, fontSize: 12 }}>{bookErr}</div>}
+        </div>
+        <button className="btn btn-primary" disabled={!chosen || !date || booking || (user && !totals.count)} onClick={book}>
+          {booking ? 'Booking…' : user ? 'Book now' : 'Sign in to book'}
+        </button>
       </div>
     </Page>
   );

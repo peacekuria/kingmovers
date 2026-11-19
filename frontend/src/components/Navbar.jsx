@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Bell, Menu, X, Truck, LogOut } from 'lucide-react';
 import { loggedOut, selectUser } from '../features/auth/authSlice';
+import { setScrollLocked } from './SmoothScroll';
 import { useNotificationsQuery, useMarkReadMutation } from '../api/api';
 
 const LINKS = {
@@ -28,6 +29,7 @@ export default function Navbar() {
 
   useEffect(() => { const f = () => setScrolled(window.scrollY > 60); f(); window.addEventListener('scroll', f, { passive: true }); return () => window.removeEventListener('scroll', f); }, []);
   useEffect(() => { setOpen(false); setBell(false); }, [loc.pathname]);
+  useEffect(() => { setScrollLocked(open); return () => setScrollLocked(false); }, [open]);
 
   const links = LINKS[user?.role || 'guest'];
   const toggleBell = () => {
@@ -58,7 +60,7 @@ export default function Navbar() {
                   </button>
                   <AnimatePresence>
                     {bell && (
-                      <motion.div className="dropdown" initial={{ opacity: 0, y: -8, scale: .97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -8 }}>
+                      <motion.div className="dropdown" data-lenis-prevent initial={{ opacity: 0, y: -8, scale: .97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -8 }}>
                         {notes.length === 0 ? <p className="muted" style={{ padding: 12, margin: 0 }}>No notifications yet.</p> :
                           notes.map((n) => (
                             <div key={n.id} className={`notif ${n.read ? '' : 'unread'}`} onClick={() => n.link && nav(n.link)} style={{ cursor: n.link ? 'pointer' : 'default' }}>
@@ -82,7 +84,7 @@ export default function Navbar() {
       </header>
       <AnimatePresence>
         {open && (
-          <motion.nav className="mobile-menu" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <motion.nav className="mobile-menu" data-lenis-prevent initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: .22 }}>
             {links.map(([to, label], i) => (
               <motion.div key={to} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}>
                 <NavLink to={to} end>{label}</NavLink>

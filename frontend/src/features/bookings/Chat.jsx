@@ -21,7 +21,7 @@ export default function Chat({ bookingId, as, readOnly }) {
 
   return (
     <div>
-      <div className="chat" ref={box}>
+      <div className="chat" ref={box} data-lenis-prevent>
         {isLoading && <p className="muted" style={{ fontSize: 13 }}>Loading messages…</p>}
         {!isLoading && messages.length === 0 && <p className="muted" style={{ fontSize: 13 }}>No messages yet. Say jambo 👋</p>}
         {messages.map((m) => (

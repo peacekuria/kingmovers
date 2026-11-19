@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { BadgeCheck, Quote, Users, Package } from 'lucide-react';
-import BrandTruck from '../../components/BrandTruck';
 import { Reveal } from '../../components/Reveal';
 import { useFeaturedReviewsQuery } from '../../api/api';
 
@@ -37,11 +36,11 @@ export function PeopleMosaic() {
   );
 }
 
-/* ---------- Branded fleet ---------- */
+/* ---------- Fleet (real vehicle photos by class) ---------- */
 const FLEET = [
-  { size: 'pickup', name: '1.5T Pickup', fit: 'Bedsitters & studios', load: 'Up to ~6 m³', crew: '2 crew' },
-  { size: 'canter', name: '3T Canter', fit: '1–2 bedroom homes', load: 'Up to ~14 m³', crew: '3–4 crew' },
-  { size: 'truck', name: '7T Truck', fit: 'Large homes & offices', load: '14 m³ and above', crew: '5–6 crew' },
+  { img: '/images/fleet-pickup.jpg', name: '1.5T Pickup', fit: 'Bedsitters & studios', load: 'Up to ~6 m³', crew: '2 crew', alt: 'A pickup truck loaded with bags and boxes', pos: '50% 50%' },
+  { img: '/images/fleet-canter.jpg', name: '3T Canter', fit: '1–2 bedroom homes', load: 'Up to ~14 m³', crew: '3–4 crew', alt: 'A blue Isuzu cab-over truck parked on a street at night', pos: '70% 60%' },
+  { img: '/images/fleet-truck.jpg', name: '7T Truck', fit: 'Large homes & offices', load: '14 m³ and above', crew: '5–6 crew', alt: 'Lorries driving on a highway in Kenya', pos: '45% 70%' },
 ];
 
 export function Fleet() {
@@ -49,33 +48,26 @@ export function Fleet() {
     <section className="block fleet-band">
       <div className="container">
         <Reveal className="section-head center">
-          <span className="eyebrow">Look for the crown</span>
-          <h2>The <span className="serif-accent">KingMovers</span> fleet</h2>
-          <p>Navy, gold and impossible to miss. Every move day starts with the crown pulling up at your gate.</p>
+          <span className="eyebrow">The right truck for every move</span>
+          <h2>Pick the <span className="serif-accent">perfect</span> ride for your load</h2>
+          <p>We match your inventory to the right vehicle, so you never pay for a 7-tonne truck to move a bedsitter.</p>
         </Reveal>
-
-        <div className="road-stage" aria-hidden="true">
-          <motion.div className="road-truck" initial={{ x: '-70%', opacity: 0 }} whileInView={{ x: '0%', opacity: 1 }} viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}>
-            <motion.div animate={{ y: [0, -1.5, 0] }} transition={{ duration: .5, repeat: Infinity, ease: 'easeInOut' }}>
-              <BrandTruck size="truck" />
-            </motion.div>
-          </motion.div>
-          <div className="road" />
-        </div>
-
-        <div className="grid g3" style={{ marginTop: 36 }}>
+        <div className="grid g3">
           {FLEET.map((f, i) => (
-            <Reveal key={f.size} delay={i * 0.1}>
-              <motion.div className="card fleet-card" whileHover={{ y: -6 }}>
-                <div className="fleet-art"><BrandTruck size={f.size} spin={false} /></div>
-                <h3 style={{ marginBottom: 2 }}>{f.name}</h3>
-                <p style={{ marginBottom: 12 }}>{f.fit}</p>
-                <div className="row" style={{ gap: 8 }}>
-                  <span className="chip chip-blue"><Package size={12} /> {f.load}</span>
-                  <span className="chip"><Users size={12} /> {f.crew}</span>
+            <Reveal key={f.name} delay={i * 0.1}>
+              <motion.article className="fleet-card" whileHover={{ y: -6 }}>
+                <div className="fleet-photo">
+                  <img src={f.img} alt={f.alt} loading="lazy" decoding="async" style={{ objectPosition: f.pos }} />
+                  <span className="fleet-tag">{f.name}</span>
                 </div>
-              </motion.div>
+                <div className="fleet-body">
+                  <h3 style={{ marginBottom: 2 }}>{f.fit}</h3>
+                  <div className="row" style={{ gap: 8, marginTop: 10 }}>
+                    <span className="chip chip-blue"><Package size={12} /> {f.load}</span>
+                    <span className="chip"><Users size={12} /> {f.crew}</span>
+                  </div>
+                </div>
+              </motion.article>
             </Reveal>
           ))}
         </div>

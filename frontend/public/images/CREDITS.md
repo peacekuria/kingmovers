@@ -19,3 +19,13 @@ All photos are from Unsplash and used under the Unsplash License (free for comme
 | kenya-couple.jpg | https://unsplash.com/photos/97zjD0fcEJk | see source page |
 
 People shown in these photos are not KingMoversKenya customers or reviewers; they are used as lifestyle imagery only.
+
+## Vehicle photos
+
+| File | Source | Notes |
+|---|---|---|
+| fleet-pickup.jpg | https://unsplash.com/photos/vj7rPpfM4BI | Pickup loaded with luggage |
+| fleet-canter.jpg | https://unsplash.com/photos/SfwC3RwxyEM | Isuzu cab-over truck (Pasha Chusovitin) |
+| fleet-truck.jpg | https://unsplash.com/photos/5k68xh2BS3g | Lorries on a Kenyan highway (Sweder Breet) |
+
+These show vehicle classes, not KingMoversKenya-owned vehicles. Replace them with photos of your own trucks when available.

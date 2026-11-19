@@ -26,7 +26,7 @@ export default function Navbar() {
   const nav = useNavigate();
   const loc = useLocation();
 
-  useEffect(() => { const f = () => setScrolled(window.scrollY > 20); f(); window.addEventListener('scroll', f, { passive: true }); return () => window.removeEventListener('scroll', f); }, []);
+  useEffect(() => { const f = () => setScrolled(window.scrollY > 60); f(); window.addEventListener('scroll', f, { passive: true }); return () => window.removeEventListener('scroll', f); }, []);
   useEffect(() => { setOpen(false); setBell(false); }, [loc.pathname]);
 
   const links = LINKS[user?.role || 'guest'];
@@ -38,7 +38,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className={`nav ${scrolled || open ? 'scrolled' : ''}`}>
+      <header className={`nav ${loc.pathname === '/' && !scrolled && !open ? 'on-dark' : ''}`}>
         <div className="container nav-inner">
           <Link to="/" className="logo"><span className="logo-mark"><Truck size={18} /></span>SmartMove</Link>
           <nav className="nav-links">

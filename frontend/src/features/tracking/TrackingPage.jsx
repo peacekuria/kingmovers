@@ -51,7 +51,7 @@ export default function TrackingPage() {
       <div className="layout-side">
         <MapView tall pickup={b.pickup} dropoff={b.dropoff} route={route} truck={truck}>
           <div className="map-legend">
-            <span className="chip" style={{ background: 'rgba(8,11,18,.85)' }}>
+            <span className="chip">
               {live ? (truck ? `GPS · updated ${lastSeen ?? 0}s ago` : "Waiting for the mover's GPS…") : b.status}
             </span>
           </div>

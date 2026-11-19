@@ -1,7 +1,9 @@
 # Render Blueprint: New → Blueprint → pick this repo. Creates Postgres + the web app.
+# Frankfurt is Render's closest region to Kenya; the app and database must share a region.
 databases:
   - name: kingmoverskenya-db
     plan: basic-256mb
+    region: frankfurt
     databaseName: kingmoverskenya
     user: kingmoverskenya
 
@@ -10,6 +12,7 @@ services:
     name: kingmoverskenya
     runtime: docker
     plan: starter
+    region: frankfurt
     dockerfilePath: ./Dockerfile
     healthCheckPath: /api/health
     autoDeploy: true

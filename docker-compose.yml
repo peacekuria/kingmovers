@@ -1,0 +1,32 @@
+# Production-like local stack: `docker compose up --build` then open http://localhost:8000
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: smartmove
+      POSTGRES_PASSWORD: smartmove
+      POSTGRES_DB: smartmove
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U smartmove"]
+      interval: 5s
+      retries: 10
+    ports: ["5432:5432"]
+
+  app:
+    build:
+      context: .
+      args:
+        VITE_SHOW_DEMO_ACCOUNTS: "true"
+    environment:
+      DATABASE_URL: postgresql://smartmove:smartmove@db:5432/smartmove
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-local-compose-secret-change-me-0123456789abcdef}
+      CORS_ORIGINS: http://localhost:8000
+      GOOGLE_MAPS_API_KEY: ${GOOGLE_MAPS_API_KEY:-}
+      SEED_DEMO_DATA: "true"
+    ports: ["8000:8000"]
+    depends_on:
+      db: { condition: service_healthy }
+
+volumes:
+  pgdata:

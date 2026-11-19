@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from ..extensions import db
 from sqlalchemy import func
+from ..extensions import db
 from ..models import Mover, Review, Booking
 from ..auth_utils import roles_required, error
 from ..pricing import covers, valid_point
@@ -79,13 +80,11 @@ def update_profile(user):
 def public_stats():
     """Real platform numbers for the landing page (no personal data)."""
     approved = Mover.query.filter_by(status="approved")
-    rated = approved.filter(Mover.reviews_count > 0)
-    total_reviews = sum(m.reviews_count for m in rated)
-    avg = (sum(m.rating * m.reviews_count for m in rated) / total_reviews) if total_reviews else 0
+    total_reviews, avg = db.session.query(func.count(Review.id), func.avg(Review.stars)).one()
     return jsonify(
         movers=approved.count(),
         completedMoves=Booking.query.filter_by(status="Completed").count(),
-        avgRating=round(avg, 1),
+        avgRating=round(float(avg), 1) if avg else 0,
         reviews=total_reviews,
         estates=len({(round(m.coverage_lat, 2), round(m.coverage_lng, 2)) for m in approved}),
     )

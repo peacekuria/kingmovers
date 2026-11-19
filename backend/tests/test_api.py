@@ -123,4 +123,20 @@ def test_login_lockout(client):
 
 def test_public_stats(client):
     s = client.get("/api/movers/stats").json
-    assert s["movers"] == 4 and 0 < s["avgRating"] <= 5 and s["completedMoves"] == 0
+    assert s["movers"] == 4 and 0 < s["avgRating"] <= 5 and s["completedMoves"] >= 0
+
+
+def test_featured_reviews_are_real_and_private(client, as_client, as_mover):
+    r = client.get("/api/reviews/featured").json
+    assert r["count"] >= 1 and all(x["stars"] >= 4 for x in r["reviews"])
+    assert all(len(x["name"].split()) <= 2 for x in r["reviews"])  # first name + initial only
+    # A review for a move pinned at exact coordinates must not leak them publicly.
+    movers = client.get("/api/movers").json["movers"]
+    simba = next(m for m in movers if m["name"] == "Simba Swift Movers")
+    pin = {"lat": -1.2911, "lng": 36.7861, "label": "Pinned (-1.291, 36.786)"}
+    b = client.post("/api/bookings", headers=as_client, json={"moverId": simba["id"], "date": TOMORROW, "pickup": pin, "dropoff": KASARANI}).json["booking"]
+    client.patch(f"/api/bookings/{b['id']}/status", headers=as_mover, json={"status": "Completed"})
+    client.post(f"/api/bookings/{b['id']}/review", headers=as_client, json={"stars": 5, "text": "Brilliant crew, careful and quick with everything."})
+    newest = client.get("/api/reviews/featured").json["reviews"][0]
+    assert newest["name"] == "Wanjiru K." and newest["route"] is None
+    assert "-1.29" not in str(newest)

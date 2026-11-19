@@ -63,6 +63,7 @@ function MoveCard({ b, i }) {
           <b>How was {mover?.name}?</b>
           <div className="stars" style={{ margin: '6px 0' }}>{[1, 2, 3, 4, 5].map((n) => <button key={n} className={n <= stars ? 'on' : ''} onClick={() => setStars(n)} aria-label={`${n} stars`}>★</button>)}</div>
           <textarea className="input" rows="2" maxLength={1000} placeholder="Tell other Nairobians about your move" value={text} onChange={(e) => setText(e.target.value)} />
+          <p className="muted" style={{ fontSize: 12, margin: '6px 0 0' }}>Your review may be shown publicly with your first name and last initial.</p>
           <button className="btn btn-primary btn-sm" style={{ marginTop: 10 }} disabled={!stars || rv.isLoading} onClick={() => act(review({ id: b.id, stars, text }))}>Submit review</button>
         </div>
       )}

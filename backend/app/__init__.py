@@ -6,9 +6,9 @@ from werkzeug.exceptions import HTTPException
 from .config import Config
 from .extensions import db, migrate, jwt, cors, limiter
 from . import models  # noqa: F401  (register models with SQLAlchemy/Alembic)
-from .routes import auth, movers, inventory, quotes, bookings, notifications, admin
+from .routes import auth, movers, inventory, quotes, bookings, notifications, admin, reviews
 
-BLUEPRINTS = (auth.bp, movers.bp, inventory.bp, quotes.bp, bookings.bp, notifications.bp, admin.bp)
+BLUEPRINTS = (auth.bp, movers.bp, inventory.bp, quotes.bp, bookings.bp, notifications.bp, admin.bp, reviews.bp)
 
 
 def create_app(config=Config):

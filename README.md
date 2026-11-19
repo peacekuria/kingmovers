@@ -49,16 +49,14 @@ serverless function under `/api` (see `vercel.json` and `api/index.py`).
 1. **Import:** on [vercel.com/new](https://vercel.com/new), import `peacekuria/kingmovers`. Keep the root directory as `./`.
    Vercel reads the build settings from `vercel.json`.
 2. **Database:** in the project's **Storage** tab, add **Neon (Postgres)** and connect it to the project. This sets
-   `DATABASE_URL` / `POSTGRES_URL` automatically.
+   `DATABASE_URL` / `POSTGRES_URL` automatically. In Project Settings, Root Directory must be empty (`./`) and the
+   Framework Preset **Other**; `vercel.json` provides the build settings.
 3. **Environment variables** (Settings → Environment Variables):
    - `JWT_SECRET_KEY`: generate with `python3 -c "import secrets; print(secrets.token_urlsafe(48))"`
    - `GOOGLE_MAPS_API_KEY`: optional, for real driving distances
-4. **Create the tables** (first deploy, and again whenever a migration is added), from your computer:
-   ```bash
-   cd backend && source .venv/bin/activate
-   DATABASE_URL="<Neon connection string>" flask db upgrade
-   DATABASE_URL="<Neon connection string>" flask create-admin --email you@example.com --name "Your Name" --phone 07XXXXXXXX
-   ```
+4. **Database tables are created automatically.** Each production build runs `scripts/vercel-build.sh`, which
+   applies any pending migrations to the production database. Preview deployments skip this step, so unmerged
+   branches never change the live database.
 5. **Deploy:** redeploy from the Vercel dashboard. After that, every merge to `main` deploys automatically, and every
    pull request gets its own preview URL.
 

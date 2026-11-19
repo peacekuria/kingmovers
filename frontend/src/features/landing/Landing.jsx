@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { ArrowRight, ClipboardCheck, Calculator, CalendarCheck, MapPinned, ShieldCheck, MessageCircle, Star, BadgeCheck, Receipt, Radio, Truck, CheckCircle2 } from 'lucide-react';
 import { HeroSlideshow, PhotoTile } from '../../components/Media';
 import { Reveal, Counter } from '../../components/Reveal';
+import Logo from '../../components/Logo';
 import { ESTATES, HERO_SLIDES, CITY_PHOTOS } from '../../data/nairobi';
 import { useGetPublicStatsQuery } from '../../api/api';
 
@@ -123,7 +124,7 @@ export default function Landing() {
           <Reveal delay={.1}>
             <span className="eyebrow">Built for peace of mind</span>
             <h2>Moving is stressful. Your mover shouldn’t be.</h2>
-            <p>SmartMove puts everything in one place: what you’re moving, who’s moving it, what it costs and where it is right now.</p>
+            <p>KingMoversKenya puts everything in one place: what you’re moving, who’s moving it, what it costs and where it is right now.</p>
             <div className="grid" style={{ gap: 16, marginTop: 24 }}>
               {WHY.map(([Icon, t, d]) => (
                 <div key={t} className="row" style={{ alignItems: 'flex-start', flexWrap: 'nowrap', gap: 14 }}>
@@ -161,7 +162,7 @@ export default function Landing() {
         <div className="container grid g2" style={{ alignItems: 'center', gap: 48 }}>
           <Reveal>
             <span className="eyebrow" style={{ color: '#9cc0ff' }}>For moving companies</span>
-            <h2>Grow your moving business with SmartMove</h2>
+            <h2>Grow your moving business with KingMoversKenya</h2>
             <p>Get booked by clients who already know their inventory and price. Manage jobs, update status and chat with clients from one dashboard.</p>
             <div className="row" style={{ marginTop: 20 }}>
               <Link to="/auth?mode=signup&role=mover" className="btn btn-light">Register your company <ArrowRight size={16} /></Link>
@@ -194,7 +195,7 @@ export default function Landing() {
       <footer>
         <div className="container grid g3" style={{ gap: 28 }}>
           <div>
-            <div className="logo" style={{ marginBottom: 10 }}><span className="logo-mark"><Truck size={18} /></span>SmartMove</div>
+            <div className="logo" style={{ marginBottom: 10 }}><Logo /></div>
             <p style={{ color: 'rgba(255,255,255,.6)', fontSize: 14 }}>Plan, price, book and track your move anywhere in Nairobi County.</p>
           </div>
           <div className="grid" style={{ gap: 6 }}>
@@ -207,7 +208,7 @@ export default function Landing() {
           </div>
         </div>
         <div className="container row between" style={{ marginTop: 32, paddingTop: 20, borderTop: '1px solid rgba(255,255,255,.12)', fontSize: 13 }}>
-          <span>© {new Date().getFullYear()} SmartMove · Nairobi, Kenya</span>
+          <span>© {new Date().getFullYear()} KingMoversKenya · Nairobi, Kenya</span>
           <span>Photography via Unsplash</span>
         </div>
       </footer>

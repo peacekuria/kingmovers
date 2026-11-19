@@ -11,7 +11,7 @@ export default class ErrorBoundary extends Component {
     return (
       <div className="card" style={{ margin: '100px auto', maxWidth: 520, textAlign: 'center' }}>
         <h3>{this.props.name || 'This section'} hit a snag</h3>
-        <p>The rest of SmartMove still works. You can retry this part.</p>
+        <p>The rest of KingMoversKenya still works. You can retry this part.</p>
         <button className="btn btn-primary" onClick={() => this.setState({ error: null })}>Retry</button>
       </div>
     );

@@ -41,7 +41,7 @@ export default function AuthPage() {
       <div className="auth-art">
         <motion.img src="/images/nairobi-upperhill.jpg" alt="Nairobi skyline at golden hour" initial={{ scale: 1.12 }} animate={{ scale: 1 }} transition={{ duration: 12, ease: 'easeOut' }} />
         <div style={{ position: 'absolute', bottom: 60, left: 48, right: 48 }}>
-          <motion.h2 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .2 }}>Karibu nyumbani.</motion.h2>
+          <motion.h2 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .2 }}><span className="serif-accent">Karibu nyumbani.</span></motion.h2>
           <p>Your next home in Nairobi is one organized move away.</p>
         </div>
       </div>

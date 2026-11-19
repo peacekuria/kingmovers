@@ -52,7 +52,7 @@ export default function Landing() {
               <motion.span key={w} style={{ display: 'inline-block', marginRight: '0.25em' }} initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.1, duration: .8, ease: [0.2, 0.7, 0.2, 1] }}>{w}</motion.span>
             ))}
             <br />
-            <motion.span className="grad-text" style={{ display: 'inline-block' }} initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .65, duration: .8 }}>made simple.</motion.span>
+            <motion.span className="grad-text serif-accent" style={{ display: 'inline-block', paddingRight: '.08em' }} initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .65, duration: .8 }}>made simple.</motion.span>
           </h1>
           <motion.p className="lead" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .85 }}>
             Find vetted movers, get a clear price in shillings, and follow your truck live, from Westlands to Utawala.

@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { loggedIn, selectUser } from './authSlice';
 import { useLoginMutation, useRegisterMutation, errorText } from '../../api/api';
 import { home } from '../../components/ProtectedRoute';
-import NairobiScene from '../../components/NairobiScene';
 
 const DEMO = [['client', 'client@smartmove.ke'], ['mover', 'mover@smartmove.ke'], ['admin', 'admin@smartmove.ke']];
 
@@ -40,9 +39,8 @@ export default function AuthPage() {
   return (
     <div className="auth-shell">
       <div className="auth-art">
-        <NairobiScene variant="night" />
-        <div className="hero-shade" style={{ zIndex: 0 }} />
-        <div style={{ position: 'absolute', bottom: 60, left: 48, right: 48, zIndex: 1 }}>
+        <motion.img src="/images/nairobi-upperhill.jpg" alt="Nairobi skyline at golden hour" initial={{ scale: 1.12 }} animate={{ scale: 1 }} transition={{ duration: 12, ease: 'easeOut' }} />
+        <div style={{ position: 'absolute', bottom: 60, left: 48, right: 48 }}>
           <motion.h2 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .2 }}>Karibu nyumbani.</motion.h2>
           <p>Your next home in Nairobi is one organized move away.</p>
         </div>
@@ -62,7 +60,7 @@ export default function AuthPage() {
                 <motion.div key="extra" initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} style={{ overflow: 'hidden' }}>
                   <div className="field"><label>I am a</label>
                     <div className="role-pick">
-                      {['client', 'mover'].map((r) => <button type="button" key={r} className={form.role === r ? 'on' : ''} onClick={() => setForm({ ...form, role: r })}>{r === 'client' ? '🏠 Client' : '🚚 Mover'}</button>)}
+                      {['client', 'mover'].map((r) => <button type="button" key={r} className={form.role === r ? 'on' : ''} onClick={() => setForm({ ...form, role: r })}>{r === 'client' ? 'I’m moving home' : 'I run a moving company'}</button>)}
                     </div>
                   </div>
                   <div className="field"><label>Full name</label><input className="input" required={mode === 'signup'} value={form.name} onChange={set('name')} /></div>

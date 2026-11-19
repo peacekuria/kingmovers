@@ -1,4 +1,4 @@
-import { motion, useInView, useMotionValue, animate } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
 export function Reveal({ children, delay = 0, y = 30, ...rest }) {
@@ -13,21 +13,30 @@ export function Reveal({ children, delay = 0, y = 30, ...rest }) {
 export function Counter({ to, prefix = '', suffix = '', decimals = 0 }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
-  const mv = useMotionValue(0);
-  const [val, setVal] = useState(0);
-  useEffect(() => {
-    if (!inView) return;
-    const c = animate(mv, to, { duration: 1.8, ease: 'easeOut', onUpdate: setVal });
-    return () => c.stop();
-  }, [inView, to, mv]);
-  return <span ref={ref}>{prefix}{val.toLocaleString('en-KE', { minimumFractionDigits: decimals, maximumFractionDigits: decimals })}{suffix}</span>;
+  const fmt = (n) => n.toLocaleString('en-KE', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+  return <span ref={ref}>{prefix}<AnimatedNumber value={inView ? to : 0} format={fmt} duration={1600} />{suffix}</span>;
 }
 
-// Smoothly tweens a number whenever it changes (used for live quote totals).
-export function AnimatedNumber({ value, format = (n) => Math.round(n).toLocaleString('en-KE') }) {
-  const mv = useMotionValue(value);
+// Tweens a number whenever it changes (used for live totals). A timer guarantees the
+// final value is shown even when animation frames are throttled (e.g. background tabs).
+export function AnimatedNumber({ value, format = (n) => Math.round(n).toLocaleString('en-KE'), duration = 600 }) {
   const [v, setV] = useState(value);
-  useEffect(() => { const c = animate(mv, value, { duration: .6, ease: 'easeOut', onUpdate: setV }); return () => c.stop(); }, [value, mv]);
+  const shown = useRef(value);
+  useEffect(() => {
+    const from = shown.current;
+    if (from === value) return;
+    const start = performance.now();
+    let raf;
+    const step = (now) => {
+      const t = Math.min(1, (now - start) / duration);
+      const next = from + (value - from) * (1 - (1 - t) ** 3);
+      shown.current = next; setV(next);
+      if (t < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    const done = setTimeout(() => { cancelAnimationFrame(raf); shown.current = value; setV(value); }, duration + 50);
+    return () => { cancelAnimationFrame(raf); clearTimeout(done); };
+  }, [value, duration]);
   return <>{format(v)}</>;
 }
 

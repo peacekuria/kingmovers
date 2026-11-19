@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, Truck, Users, MapPin } from 'lucide-react';
+import { Star, Truck, Users, MapPin, BadgeCheck } from 'lucide-react';
 import MapView from '../../components/MapView';
 import { Page } from '../../components/Reveal';
 import { ESTATES } from '../../data/nairobi';
@@ -43,6 +43,7 @@ export default function MoversPage() {
                   <div style={{ minWidth: 0 }}>
                     <h3 style={{ margin: 0 }}>{m.name}</h3>
                     <div className="muted" style={{ fontSize: 13 }}>{m.tagline}</div>
+                    <span className="verified"><BadgeCheck size={13} /> Verified by SmartMove</span>
                   </div>
                 </div>
                 <div className="row" style={{ margin: '14px 0', gap: 8 }}>

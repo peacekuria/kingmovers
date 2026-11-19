@@ -37,10 +37,17 @@ export const TEMPLATES = {
   '2BR': { label: '2 Bedroom', icon: '🏡', rooms: { 'Master bedroom': BED, 'Second bedroom': [item('Bed frame', 40, 1.0), item('Mattress', 22, 0.8), item('Study desk', 25, 0.5), item('Books (boxes)', 30, 0.3)], 'Living room': [...LIVING, item('Dining table + 6 chairs', 80, 1.8)], Kitchen: [...KITCHEN, item('Microwave', 12, 0.1)] } },
 };
 
-export const FEATURE_VIDEOS = [
-  // Drop your own footage into /public/videos with these names (see README).
-  { id: 'cbd', title: 'CBD at golden hour', area: 'Nairobi CBD', src: '/videos/cbd.mp4', scene: 'dusk' },
-  { id: 'westlands', title: 'Westlands skyline', area: 'Westlands', src: '/videos/westlands.mp4', scene: 'night' },
-  { id: 'expressway', title: 'Nairobi Expressway', area: 'Mombasa Road', src: '/videos/expressway.mp4', scene: 'day' },
-  { id: 'karen', title: 'Leafy Karen', area: 'Karen', src: '/videos/karen.mp4', scene: 'green' },
+// Real Nairobi photography (Unsplash License, see public/images/CREDITS.md).
+// Add a matching MP4 under /public/videos to play footage over any photo.
+export const HERO_SLIDES = [
+  { img: '/images/nairobi-kicc.jpg', caption: 'City Hall & KICC, Nairobi CBD', video: '/videos/hero.mp4' },
+  { img: '/images/nairobi-upperhill.jpg', caption: 'Upper Hill at golden hour' },
+  { img: '/images/nairobi-greencity.jpg', caption: 'The green city in the sun' },
+];
+
+export const CITY_PHOTOS = [
+  { id: 'cbd', title: 'Heart of the city', area: 'Nairobi CBD', img: '/images/nairobi-kicc.jpg', video: '/videos/cbd.mp4' },
+  { id: 'westlands', title: 'Business & high-rise living', area: 'Westlands', img: '/images/nairobi-westlands.jpg', video: '/videos/westlands.mp4' },
+  { id: 'uhuru', title: 'City lights after dark', area: 'Uhuru Park', img: '/images/nairobi-uhuru-night.jpg', video: '/videos/night.mp4' },
+  { id: 'leafy', title: 'Leafy suburbs at dawn', area: 'Kileleshwa & Lavington', img: '/images/nairobi-dawn.jpg', video: '/videos/suburbs.mp4' },
 ];

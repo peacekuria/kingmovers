@@ -52,9 +52,9 @@ export default function MapView({ pickup, dropoff, movers = [], truck, route, on
             <Tooltip>{m.name} · {m.coverage.radiusKm} km zone</Tooltip>
           </Circle>
         ))}
-        {route && <Polyline positions={route.map((p) => [p.lat, p.lng])} pathOptions={{ color: '#f5a524', weight: 4, dashArray: '8 10' }} />}
-        {pickup && <Marker position={[pickup.lat, pickup.lng]} icon={pinIcon('#2fbf71', 'A')}><Tooltip>Pickup: {pickup.label || 'Pinned'}</Tooltip></Marker>}
-        {dropoff && <Marker position={[dropoff.lat, dropoff.lng]} icon={pinIcon('#f5a524', 'B')}><Tooltip>Drop-off: {dropoff.label || 'Pinned'}</Tooltip></Marker>}
+        {route && <Polyline positions={route.map((p) => [p.lat, p.lng])} pathOptions={{ color: '#1652f0', weight: 4, dashArray: '8 10' }} />}
+        {pickup && <Marker position={[pickup.lat, pickup.lng]} icon={pinIcon('#0e9f6e', 'A')}><Tooltip>Pickup: {pickup.label || 'Pinned'}</Tooltip></Marker>}
+        {dropoff && <Marker position={[dropoff.lat, dropoff.lng]} icon={pinIcon('#1652f0', 'B')}><Tooltip>Drop-off: {dropoff.label || 'Pinned'}</Tooltip></Marker>}
         {truck && <Marker position={[truck.lat, truck.lng]} icon={truckIcon} />}
       </MapContainer>
     </div>

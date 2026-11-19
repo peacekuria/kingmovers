@@ -20,6 +20,8 @@ def create_app(config=Config):
         secret = os.getenv("JWT_SECRET_KEY", "")
         if len(secret) < 32:
             raise RuntimeError("JWT_SECRET_KEY must be set to a random value of at least 32 characters in production.")
+        if app.config["SQLALCHEMY_DATABASE_URI"].startswith("sqlite"):
+            raise RuntimeError("DATABASE_URL (PostgreSQL) must be set in production.")
 
     db.init_app(app)
     migrate.init_app(app, db)

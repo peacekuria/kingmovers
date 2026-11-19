@@ -1,4 +1,4 @@
-# SmartMove · Nairobi
+# KingMoversKenya · Nairobi
 
 A moving assistant for Nairobi County: inventory checklists, instant quotes in KES, booking, live truck tracking,
 in-app chat, reviews, and role-based dashboards for clients, movers and admins.
@@ -19,7 +19,7 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env        # set DATABASE_URL (or delete it to use SQLite) and JWT_SECRET_KEY
 flask db upgrade
-flask seed                  # demo data: client/mover/admin @smartmove.ke, password "password"
+flask seed                  # demo data: client/mover/admin @kingmoverskenya.co.ke, password "password"
 flask run
 ```
 
@@ -40,7 +40,7 @@ npm run dev
 1. Push this repo to GitHub.
 2. In Render: **New → Blueprint**, then pick the repo. `render.yaml` creates a Postgres database and the web service,
    and generates `JWT_SECRET_KEY`.
-3. Once it's live, set `CORS_ORIGINS` to your real URL (e.g. `https://smartmove.onrender.com`). Optionally add
+3. Once it's live, set `CORS_ORIGINS` to your real URL (e.g. `https://kingmoverskenya.onrender.com`). Optionally add
    `GOOGLE_MAPS_API_KEY`.
 4. Create your admin account from the Render shell:
    `flask create-admin --email you@company.co.ke --name "Your Name" --phone 0712345678`
@@ -49,12 +49,12 @@ Migrations run automatically on every deploy (`docker-entrypoint.sh`).
 
 ### Any Docker host (Railway, Fly.io, DigitalOcean, a VPS)
 ```bash
-docker build -t smartmove .
+docker build -t kingmoverskenya .
 docker run -p 8000:8000 \
-  -e DATABASE_URL=postgresql://user:pass@host:5432/smartmove \
+  -e DATABASE_URL=postgresql://user:pass@host:5432/kingmoverskenya \
   -e JWT_SECRET_KEY=$(python3 -c "import secrets;print(secrets.token_urlsafe(48))") \
   -e CORS_ORIGINS=https://your-domain \
-  smartmove
+  kingmoverskenya
 ```
 Put it behind HTTPS (the platforms above do this for you). Geolocation and browser notifications only work over HTTPS.
 

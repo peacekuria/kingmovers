@@ -43,7 +43,7 @@ export default function MoversPage() {
                   <div style={{ minWidth: 0 }}>
                     <h3 style={{ margin: 0 }}>{m.name}</h3>
                     <div className="muted" style={{ fontSize: 13 }}>{m.tagline}</div>
-                    <span className="verified"><BadgeCheck size={13} /> Verified by SmartMove</span>
+                    <span className="verified"><BadgeCheck size={13} /> Verified by KingMoversKenya</span>
                   </div>
                 </div>
                 <div className="row" style={{ margin: '14px 0', gap: 8 }}>

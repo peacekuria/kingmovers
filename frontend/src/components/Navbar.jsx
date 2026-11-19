@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import { NavLink, Link, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bell, Menu, X, Truck, LogOut } from 'lucide-react';
+import { Bell, Menu, X, LogOut } from 'lucide-react';
 import { loggedOut, selectUser } from '../features/auth/authSlice';
 import { setScrollLocked } from './SmoothScroll';
+import Logo from './Logo';
 import { useNotificationsQuery, useMarkReadMutation } from '../api/api';
 
 const LINKS = {
@@ -42,7 +43,7 @@ export default function Navbar() {
     <>
       <header className={`nav ${loc.pathname === '/' && !scrolled && !open ? 'on-dark' : ''}`}>
         <div className="container nav-inner">
-          <Link to="/" className="logo"><span className="logo-mark"><Truck size={18} /></span>SmartMove</Link>
+          <Link to="/" className="logo" aria-label="KingMoversKenya home"><Logo /></Link>
           <nav className="nav-links">
             {links.map(([to, label]) => (
               <NavLink key={to} to={to} end>

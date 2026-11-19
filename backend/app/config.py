@@ -3,7 +3,7 @@ from datetime import timedelta
 
 
 def _db_url():
-    url = os.getenv("DATABASE_URL", "sqlite:///smartmove.db")
+    url = os.getenv("DATABASE_URL", "sqlite:///kingmoverskenya.db")
     # Render/Heroku hand out postgres:// URLs; SQLAlchemy needs an explicit driver.
     if url.startswith("postgres://"):
         url = "postgresql+psycopg://" + url[len("postgres://"):]

@@ -33,7 +33,7 @@ export default function MoverDashboard() {
       <span className="eyebrow">Mover dashboard</span>
       <h1 style={{ fontSize: 'clamp(2rem,5vw,3.2rem)' }}>{mover?.name || 'Your jobs'}</h1>
       <PendingBanner mover={mover} />
-      <div className="grid g4" style={{ marginBottom: 24 }}>
+      <div className="grid stats-grid" style={{ marginBottom: 24 }}>
         {[['Total jobs', jobs.length], ['Pending', jobs.filter((j) => j.status === 'Pending').length], ['In progress', jobs.filter((j) => j.status === 'In-Progress').length], ['Earned', kes(earnings)]].map(([l, v], i) => (
           <motion.div key={l} className="card" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }}>
             <span className="muted" style={{ fontSize: 13 }}>{l}</span><div className="price-big" style={{ fontSize: 30 }}>{v}</div>

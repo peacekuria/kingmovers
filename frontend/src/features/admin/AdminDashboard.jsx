@@ -37,7 +37,7 @@ function Overview() {
   return (
     <>
       <AdminTabs />
-      <div className="grid g4" style={{ marginBottom: 20 }}>
+      <div className="grid stats-grid" style={{ marginBottom: 20 }}>
         {[['Users', st.users], ['Approved movers', st.approvedMovers], ['Pending approvals', st.pendingMovers], ['Bookings', st.bookings]].map(([l, v], i) => (
           <motion.div key={l} className="card" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * .06 }}>
             <span className="muted" style={{ fontSize: 13 }}>{l}</span><div className="price-big" style={{ fontSize: 32 }}>{v}</div>
@@ -103,15 +103,15 @@ function MoversAdmin() {
     <>
       <AdminTabs />
       <div className="card table-wrap">
-        <table>
+        <table className="table-cards">
           <thead><tr><th>Company</th><th>Rating</th><th>Vehicle</th><th>Coverage</th><th>Status</th><th>Actions</th></tr></thead>
           <tbody>
             {[...movers].sort((a, b) => order[a.status] - order[b.status]).map((m) => (
               <motion.tr key={m.id} layout>
-                <td><b>{m.name}</b><div className="muted" style={{ fontSize: 12 }}>{m.ownerEmail || 'No owner account'}</div></td>
-                <td>{m.reviews ? `${m.rating.toFixed(1)} ★` : '-'}</td><td>{m.vehicle}</td><td>{m.coverage.radiusKm} km</td>
-                <td><span className={`chip ${{ pending: 'chip-amber', approved: 'chip-green', rejected: 'chip-red' }[m.status]}`}>{m.status}</span></td>
-                <td><div className="row" style={{ gap: 6, flexWrap: 'nowrap' }}>
+                <td className="full"><b>{m.name}</b><div className="muted" style={{ fontSize: 12 }}>{m.ownerEmail || 'No owner account'}</div></td>
+                <td data-label="Rating">{m.reviews ? `${m.rating.toFixed(1)} ★` : '-'}</td><td data-label="Vehicle">{m.vehicle}</td><td data-label="Coverage">{m.coverage.radiusKm} km</td>
+                <td data-label="Status"><span className={`chip ${{ pending: 'chip-amber', approved: 'chip-green', rejected: 'chip-red' }[m.status]}`}>{m.status}</span></td>
+                <td className="full"><div className="row" style={{ gap: 6 }}>
                   {m.status !== 'approved' && <button className="btn btn-ghost btn-sm" onClick={() => setStatus({ id: m.id, status: 'approved' })}><Check size={14} /> Approve</button>}
                   {m.status !== 'rejected' && <button className="btn btn-ghost btn-sm" onClick={() => setStatus({ id: m.id, status: 'rejected' })}><X size={14} /> {m.status === 'approved' ? 'Suspend' : 'Reject'}</button>}
                 </div></td>
@@ -134,15 +134,15 @@ function UsersAdmin() {
     <>
       <AdminTabs />
       <div className="card table-wrap">
-        <table>
+        <table className="table-cards">
           <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Role</th><th>Status</th><th></th></tr></thead>
           <tbody>
             {users.map((u) => (
               <tr key={u.id}>
-                <td><b>{u.name}</b></td><td>{u.email}</td><td>{u.phone}</td>
-                <td><span className="chip">{u.role}</span></td>
-                <td><span className={`chip ${u.active ? 'chip-green' : 'chip-red'}`}>{u.active ? 'active' : 'suspended'}</span></td>
-                <td>{u.id !== me.id && <button className="btn btn-ghost btn-sm" onClick={() => setActive({ id: u.id, active: !u.active })}>{u.active ? <><Ban size={14} /> Suspend</> : <><RotateCcw size={14} /> Restore</>}</button>}</td>
+                <td className="full"><b>{u.name}</b></td><td className="full" data-label="Email">{u.email}</td><td data-label="Phone">{u.phone}</td>
+                <td data-label="Role"><span className="chip">{u.role}</span></td>
+                <td data-label="Status"><span className={`chip ${u.active ? 'chip-green' : 'chip-red'}`}>{u.active ? 'active' : 'suspended'}</span></td>
+                <td className="full">{u.id !== me.id && <button className="btn btn-ghost btn-sm" onClick={() => setActive({ id: u.id, active: !u.active })}>{u.active ? <><Ban size={14} /> Suspend</> : <><RotateCcw size={14} /> Restore</>}</button>}</td>
               </tr>
             ))}
           </tbody>

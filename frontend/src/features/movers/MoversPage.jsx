@@ -21,12 +21,12 @@ export default function MoversPage() {
       <span className="eyebrow">Movers</span>
       <h1 style={{ fontSize: 'clamp(2rem,5vw,3.2rem)' }}>Trusted crews across Nairobi</h1>
       <p>Filter by your estate to see who covers it. Coloured circles on the map show each mover's coverage zone.</p>
-      <div className="row" style={{ margin: '20px 0' }}>
-        <select className="input" style={{ maxWidth: 260 }} value={area} onChange={(e) => setArea(e.target.value)}>
+      <div className="row filters">
+        <select className="input" aria-label="Filter by estate" value={area} onChange={(e) => setArea(e.target.value)}>
           <option value="">All of Nairobi</option>
           {ESTATES.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}
         </select>
-        <select className="input" style={{ maxWidth: 200 }} value={sort} onChange={(e) => setSort(e.target.value)}>
+        <select className="input" aria-label="Sort movers" value={sort} onChange={(e) => setSort(e.target.value)}>
           <option value="rating">Top rated</option><option value="price">Lowest base fee</option>
         </select>
         <span className="muted">{shown.length} mover{shown.length === 1 ? '' : 's'}</span>

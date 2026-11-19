@@ -76,7 +76,7 @@ export default function Landing() {
 
       <div className="container stats-strip">
         <Reveal>
-          <div className="card card-glow grid g4" style={{ padding: 28 }}>
+          <div className="card card-glow grid stats-grid stats-band">
             <div className="stat"><b>{stats ? <Counter to={stats.movers} /> : '·'}</b><span className="muted">approved moving companies</span></div>
             <div className="stat"><b>{stats?.avgRating ? <><Counter to={stats.avgRating} decimals={1} /><span style={{ color: 'var(--amber)' }}> ★</span></> : 'New'}</b><span className="muted">average mover rating</span></div>
             <div className="stat"><b>{stats ? <Counter to={stats.reviews} /> : '·'}</b><span className="muted">verified client reviews</span></div>
@@ -112,10 +112,10 @@ export default function Landing() {
           <Reveal>
             <div style={{ position: 'relative' }}>
               <div className="photo-frame"><img src="/images/moving-new-home.jpg" alt="A couple settling into their new home among moving boxes" loading="lazy" /></div>
-              <motion.div className="float-card" style={{ left: -12, bottom: 28 }} animate={{ y: [0, -8, 0] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}>
+              <motion.div className="float-card float-a" animate={{ y: [0, -8, 0] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}>
                 <CheckCircle2 color="var(--green)" /> <div><b>Move confirmed</b><div className="muted" style={{ fontSize: 12 }}>Kilimani → Kasarani · Sat 8:00</div></div>
               </motion.div>
-              <motion.div className="float-card" style={{ right: -10, top: 24 }} animate={{ y: [0, 8, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}>
+              <motion.div className="float-card float-b" animate={{ y: [0, 8, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}>
                 <Truck color="var(--brand)" /> <div><b>Crew on the way</b><div className="muted" style={{ fontSize: 12 }}>Live on your map</div></div>
               </motion.div>
             </div>
@@ -143,7 +143,7 @@ export default function Landing() {
             <h2>Your city. Your next chapter.</h2>
             <p>From CBD apartments to leafy compounds in Lavington, our movers know the routes, the gates and the traffic.</p>
           </Reveal>
-          <div className="grid g4">
+          <div className="grid g4 snap-row" data-lenis-prevent-touch>
             {CITY_PHOTOS.map((p, i) => <PhotoTile key={p.id} photo={p} index={i} />)}
           </div>
         </div>

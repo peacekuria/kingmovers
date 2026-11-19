@@ -28,7 +28,7 @@ export default function InventoryPage() {
   if (!inv.loaded) return <Page className="container"><Spinner label="Loading your inventory…" /></Page>;
 
   return (
-    <Page className="container">
+    <Page className="container has-action-bar">
       <span className="eyebrow">Step 1 · Inventory</span>
       <h1 style={{ fontSize: 'clamp(2rem,5vw,3.2rem)' }}>What's coming with you?</h1>
       <p>Start from a template, then tick, untick or add your own items. Weight and volume feed straight into your quote. Changes save automatically.</p>
@@ -101,6 +101,10 @@ export default function InventoryPage() {
           <p className="muted" style={{ fontSize: 13, marginTop: 8 }}>{pct}% of listed items are moving · Suggested truck: <b style={{ color: 'var(--ink)' }}>{totals.m3 < 6 ? '1.5T Pickup' : totals.m3 < 14 ? '3T Canter' : '5T+ Truck'}</b></p>
           <Link to="/quote" className="btn btn-primary" style={{ width: '100%', marginTop: 8 }}>Get my quote <ArrowRight size={16} /></Link>
         </div>
+      </div>
+      <div className="action-bar">
+        <div><b>{totals.count} items</b><div className="muted" style={{ fontSize: 12 }}>{totals.kg} kg · {totals.m3} m³</div></div>
+        <Link to="/quote" className="btn btn-primary">Get my quote <ArrowRight size={16} /></Link>
       </div>
     </Page>
   );

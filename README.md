@@ -13,7 +13,7 @@ in-app chat, reviews, and role-based dashboards for clients, movers and admins.
 | Frontend | React 19, Vite, Redux Toolkit + RTK Query, Framer Motion, Leaflet |
 | Backend | Flask 3, SQLAlchemy, Alembic (Flask-Migrate), JWT, gunicorn |
 | Database | PostgreSQL (SQLite works for local dev) |
-| Deploy | One Docker image serves the API and the built frontend |
+| Deploy | Vercel (CDN + Python serverless API), or one Docker image anywhere |
 
 ## Run locally
 
@@ -41,16 +41,29 @@ npm run dev
 
 ## Deploy
 
-### Render (recommended, one click)
-1. Push this repo to GitHub.
-2. In Render: **New → Blueprint**, then pick the repo. `render.yaml` creates a Postgres database and the web service,
-   and generates `JWT_SECRET_KEY`.
-3. Once it's live, set `CORS_ORIGINS` to your real URL (e.g. `https://kingmoverskenya.onrender.com`). Optionally add
-   `GOOGLE_MAPS_API_KEY`.
-4. Create your admin account from the Render shell:
-   `flask create-admin --email you@company.co.ke --name "Your Name" --phone 0712345678`
+### Vercel (recommended)
 
-Migrations run automatically on every deploy (`docker-entrypoint.sh`).
+The repo is ready for Vercel: the React app is served from Vercel's CDN and the Flask API runs as a Python
+serverless function under `/api` (see `vercel.json` and `api/index.py`).
+
+1. **Import:** on [vercel.com/new](https://vercel.com/new), import `peacekuria/kingmovers`. Keep the root directory as `./`.
+   Vercel reads the build settings from `vercel.json`.
+2. **Database:** in the project's **Storage** tab, add **Neon (Postgres)** and connect it to the project. This sets
+   `DATABASE_URL` / `POSTGRES_URL` automatically.
+3. **Environment variables** (Settings → Environment Variables):
+   - `JWT_SECRET_KEY`: generate with `python3 -c "import secrets; print(secrets.token_urlsafe(48))"`
+   - `GOOGLE_MAPS_API_KEY`: optional, for real driving distances
+4. **Create the tables** (first deploy, and again whenever a migration is added), from your computer:
+   ```bash
+   cd backend && source .venv/bin/activate
+   DATABASE_URL="<Neon connection string>" flask db upgrade
+   DATABASE_URL="<Neon connection string>" flask create-admin --email you@example.com --name "Your Name" --phone 07XXXXXXXX
+   ```
+5. **Deploy:** redeploy from the Vercel dashboard. After that, every merge to `main` deploys automatically, and every
+   pull request gets its own preview URL.
+
+On Vercel the API always runs in production mode. It refuses to start without `JWT_SECRET_KEY` (32+ characters)
+and a PostgreSQL `DATABASE_URL`, and it opens a fresh database connection per request (serverless-safe).
 
 ### Any Docker host (Railway, Fly.io, DigitalOcean, a VPS)
 ```bash

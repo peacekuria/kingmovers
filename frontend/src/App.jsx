@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
@@ -7,6 +7,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import ProtectedRoute from './components/ProtectedRoute';
 import Landing from './features/landing/Landing';
 import SessionSync from './features/auth/SessionSync';
+import SmoothScroll, { scrollToTop } from './components/SmoothScroll';
 
 // Each feature is code-split and isolated behind its own error boundary.
 const AuthPage = lazy(() => import('./features/auth/AuthPage'));
@@ -28,13 +29,13 @@ const guard = (name, el, roles) => {
 
 export default function App() {
   const loc = useLocation();
-  useEffect(() => { window.scrollTo(0, 0); }, [loc.pathname]);
   const section = loc.pathname.split('/')[1];
   return (
     <>
+      <SmoothScroll />
       <SessionSync />
       <Navbar />
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" onExitComplete={scrollToTop}>
         <Routes location={loc} key={section}>
           <Route path="/" element={guard('Home', <Landing />)} />
           <Route path="/auth" element={guard('Sign in', <AuthPage />)} />

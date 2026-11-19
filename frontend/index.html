@@ -3,7 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script>
+      // Preload the first hero photo (right size for the device) only on the landing page.
+      if (location.pathname === '/') {
+        var l = document.createElement('link');
+        l.rel = 'preload'; l.as = 'image'; l.fetchPriority = 'high';
+        l.href = innerWidth < 768 ? '/images/nairobi-kicc-sm.jpg' : '/images/nairobi-kicc.jpg';
+        document.head.appendChild(l);
+      }
+    </script>
     <title>SmartMove · Nairobi</title>
     <meta name="theme-color" content="#080b12" />
     <meta name="description" content="Plan, price, book and track your move anywhere in Nairobi County." />

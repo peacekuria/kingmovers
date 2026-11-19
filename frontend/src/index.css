@@ -280,3 +280,93 @@ tr:hover td { background: #fafbfd; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
 }
+
+/* ---------- Smooth scrolling (Lenis) ---------- */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* ---------- Motion & touch polish ---------- */
+.slide { will-change: transform, opacity; }
+button, a, select, .btn { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.chat, .dropdown, .mobile-menu, .table-wrap { -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+
+/* ---------- Responsive layout ---------- */
+.stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (min-width: 900px) { .stats-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; } }
+.stats-band { padding: 28px; }
+
+.filters { margin: 20px 0; }
+.filters .input { flex: 0 1 260px; }
+
+.float-a { left: -12px; bottom: 28px; }
+.float-b { right: -10px; top: 24px; }
+
+/* Tabs scroll sideways instead of squashing labels */
+.tabs { overflow-x: auto; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.tabs button { flex: 1 0 auto; white-space: nowrap; padding: 10px 14px; }
+
+/* Sticky action bar (phones & tablets) keeps the total and main action in reach */
+.action-bar { display: none; }
+@media (max-width: 959px) {
+  .action-bar {
+    display: flex; position: fixed; inset: auto 0 0; z-index: 900; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: rgba(255,255,255,.96); backdrop-filter: blur(12px);
+    border-top: 1px solid var(--line); box-shadow: 0 -10px 30px -12px rgba(10,37,64,.25);
+  }
+  .has-action-bar { padding-bottom: calc(120px + env(safe-area-inset-bottom)); }
+  .toasts { bottom: calc(92px + env(safe-area-inset-bottom)); }
+  .map-wrap.tall { height: 56vh; min-height: 320px; }
+}
+
+@media (max-width: 640px) {
+  body { font-size: 15px; }
+  .page { padding: 90px 0 64px; }
+  section.block { padding: 64px 0; }
+  .section-head { margin-bottom: 28px; }
+  .card { padding: 18px; border-radius: 14px; }
+  .stats-band { padding: 20px; }
+  .stats-strip { margin-top: -56px; }
+  .hero-content { padding: 108px 0 120px; }
+  .hero-trust { gap: 10px 16px; font-size: 13px; }
+  .slide-caption { display: none; }
+  .slide-dots { right: 50%; translate: 50% 0; bottom: 84px; }
+  .price-big { font-size: 2rem; }
+  .stat b { font-size: 1.6rem; }
+  /* 16px stops iOS from zooming into focused fields */
+  .input, select.input, textarea.input { font-size: 16px; }
+  .filters .input { flex: 1 1 100%; }
+  .float-a { left: 10px; bottom: 12px; }
+  .float-b { right: 10px; top: 12px; }
+  .float-card { padding: 10px 12px; font-size: 13px; }
+  .cta-band { border-radius: 18px; }
+  .toasts { right: 12px; left: 12px; width: auto; }
+  .dropdown { position: fixed; top: 74px; left: 12px; right: 12px; width: auto; max-height: 70vh; }
+  .photo-tile { aspect-ratio: 3/4; }
+  .tpl-btn { flex: 1 1 calc(50% - 6px); }
+  .item-row { gap: 10px; padding: 10px; }
+  .bubble { max-width: 88%; }
+
+  /* Tables become stacked cards */
+  .table-cards thead { display: none; }
+  .table-cards, .table-cards tbody { display: block; }
+  .table-cards tr { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; padding: 14px 2px; border-bottom: 1px solid var(--line); }
+  .table-cards td { border: 0; padding: 0; }
+  .table-cards td.full { grid-column: 1 / -1; }
+  .table-cards td[data-label]::before { content: attr(data-label); display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: 2px; }
+  .table-cards tr:hover td { background: none; }
+}
+@media (max-width: 380px) {
+  .container { width: calc(100% - 24px); }
+  .logo { font-size: 18px; }
+  .stats-grid { gap: 8px; }
+}
+
+/* Swipeable photo carousel on phones */
+@media (max-width: 640px) {
+  .snap-row { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: -12px; padding: 4px 12px 12px; scroll-padding-inline: 12px; }
+  .snap-row::-webkit-scrollbar { display: none; }
+  .snap-row > * { flex: 0 0 78%; scroll-snap-align: start; }
+}

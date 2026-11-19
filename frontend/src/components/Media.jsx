@@ -8,6 +8,9 @@ function OptionalVideo({ src, poster }) {
   return <video src={src} poster={poster} autoPlay muted loop playsInline preload="none" onError={() => setOk(false)} />;
 }
 
+const small = () => typeof window !== 'undefined' && window.innerWidth < 768;
+const pick = (s) => (small() && s.sm) || s.img;
+
 export function HeroSlideshow({ slides, interval = 7000 }) {
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -15,15 +18,15 @@ export function HeroSlideshow({ slides, interval = 7000 }) {
     return () => clearInterval(t);
   }, [slides.length, interval]);
   // Preload the next slide so the crossfade never flashes.
-  useEffect(() => { const img = new Image(); img.src = slides[(i + 1) % slides.length].img; }, [i, slides]);
+  useEffect(() => { const img = new Image(); img.src = pick(slides[(i + 1) % slides.length]); }, [i, slides]);
   const s = slides[i];
   return (
     <>
       <AnimatePresence initial={false}>
-        <motion.div key={s.img} className="slide" style={{ backgroundImage: `url(${s.img})` }}
+        <motion.div key={s.img} className="slide" style={{ backgroundImage: `url(${pick(s)})` }}
           initial={{ opacity: 0, scale: 1.12 }} animate={{ opacity: 1, scale: 1.02 }} exit={{ opacity: 0 }}
           transition={{ opacity: { duration: 1.4 }, scale: { duration: interval / 1000 + 1.4, ease: 'linear' } }}>
-          <OptionalVideo src={s.video} poster={s.img} />
+          {!small() && <OptionalVideo src={s.video} poster={s.img} />}
         </motion.div>
       </AnimatePresence>
       <div className="slide-caption"><span className="live-dot" /> {s.caption}</div>

@@ -34,6 +34,7 @@ export const api = createApi({
     // movers
     movers: b.query({ query: (p) => ({ url: '/movers', params: p || undefined }), transformResponse: (r) => r.movers, providesTags: ['Movers'] }),
     getPublicStats: b.query({ query: () => '/movers/stats' }),
+    featuredReviews: b.query({ query: () => '/reviews/featured' }),
     myMover: b.query({ query: () => '/movers/me', transformResponse: (r) => r.mover, providesTags: ['MyMover'] }),
     updateMyMover: b.mutation({ query: (body) => ({ url: '/movers/me', method: 'PATCH', body }), invalidatesTags: ['MyMover', 'Movers'] }),
 
@@ -68,7 +69,7 @@ export const api = createApi({
 });
 
 export const {
-  useLoginMutation, useRegisterMutation, useMeQuery, useMoversQuery, useGetPublicStatsQuery, useMyMoverQuery, useUpdateMyMoverMutation,
+  useLoginMutation, useRegisterMutation, useMeQuery, useMoversQuery, useGetPublicStatsQuery, useFeaturedReviewsQuery, useMyMoverQuery, useUpdateMyMoverMutation,
   useInventoryQuery, useSaveInventoryMutation, useQuotesQuery, useBookingsQuery, useBookingQuery, useCreateBookingMutation,
   useRescheduleMutation, useSetStatusMutation, useReviewMutation, useMessagesQuery, useSendMessageMutation, useLocationQuery,
   usePushLocationMutation, useNotificationsQuery, useMarkReadMutation, useAdminStatsQuery, useAdminUsersQuery,

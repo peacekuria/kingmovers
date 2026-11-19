@@ -6,6 +6,7 @@ import { ArrowRight, ClipboardCheck, Calculator, CalendarCheck, MapPinned, Shiel
 import { HeroSlideshow, PhotoTile } from '../../components/Media';
 import { Reveal, Counter } from '../../components/Reveal';
 import Logo from '../../components/Logo';
+import { PeopleMosaic, Fleet, Reviews } from './Sections';
 import { ESTATES, HERO_SLIDES, CITY_PHOTOS } from '../../data/nairobi';
 import { useGetPublicStatsQuery } from '../../api/api';
 
@@ -108,11 +109,13 @@ export default function Landing() {
         </div>
       </section>
 
+      <PeopleMosaic />
+
       <section className="block band-white">
         <div className="container grid g2" style={{ alignItems: 'center', gap: 48 }}>
           <Reveal>
             <div style={{ position: 'relative' }}>
-              <div className="photo-frame"><img src="/images/moving-new-home.jpg" alt="A couple settling into their new home among moving boxes" loading="lazy" /></div>
+              <div className="photo-frame"><img src="/images/kenya-couple.jpg" alt="A smiling couple in a green garden in Nairobi" loading="lazy" /></div>
               <motion.div className="float-card float-a" animate={{ y: [0, -8, 0] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}>
                 <CheckCircle2 color="var(--green)" /> <div><b>Move confirmed</b><div className="muted" style={{ fontSize: 12 }}>Kilimani → Kasarani · Sat 8:00</div></div>
               </motion.div>
@@ -137,6 +140,8 @@ export default function Landing() {
         </div>
       </section>
 
+      <Fleet />
+
       <section className="block">
         <div className="container">
           <Reveal className="section-head">
@@ -158,6 +163,8 @@ export default function Landing() {
         </div>
       </section>
 
+      <Reviews />
+
       <section className="block band-navy">
         <div className="container grid g2" style={{ alignItems: 'center', gap: 48 }}>
           <Reveal>
@@ -170,7 +177,7 @@ export default function Landing() {
             </div>
           </Reveal>
           <Reveal delay={.1}>
-            <div className="photo-frame"><img src="/images/moving-in.jpg" alt="People carrying boxes into a new home" loading="lazy" /></div>
+            <div className="photo-frame"><img src="/images/kenya-handshake.jpg" alt="Two people shaking hands on a deal in a Nairobi office" loading="lazy" /></div>
           </Reveal>
         </div>
       </section>

@@ -1,0 +1,17 @@
+# deps / builds
+node_modules/
+frontend/dist/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+# local data & secrets
+backend/instance/
+*.db
+.env
+.env.*
+!.env.example
+# OS / editors
+.DS_Store
+.vscode/
+.idea/

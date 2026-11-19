@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600;1,700;1,800&family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
 /* Trust palette: deep navy ink, confident blue for actions, green for success,
    Kenyan gold reserved for ratings and small highlights. */
@@ -28,6 +28,7 @@
   --shadow-lg: 0 30px 60px -20px rgba(10, 37, 64, .35);
   --display: 'Plus Jakarta Sans', system-ui, sans-serif;
   --body: 'Inter', system-ui, sans-serif;
+  --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
   color-scheme: light;
 }
 
@@ -99,8 +100,9 @@ input[type=checkbox] { accent-color: var(--brand); width: 18px; height: 18px; }
 .nav { position: fixed; inset: 0 0 auto; z-index: 1000; background: rgba(255,255,255,.92); backdrop-filter: blur(14px) saturate(1.4); border-bottom: 1px solid var(--line); transition: background .3s, border-color .3s, color .3s; }
 .nav.on-dark { background: transparent; border-color: transparent; backdrop-filter: none; color: #fff; }
 .nav-inner { height: 70px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.logo { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; }
-.logo-mark { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: linear-gradient(135deg, var(--brand), var(--navy)); color: #fff; box-shadow: 0 6px 14px -6px rgba(22,82,240,.7); }
+.logo { display: flex; align-items: center; gap: 11px; color: var(--navy); }
+.logo-svg { flex: none; filter: drop-shadow(0 6px 12px rgba(10,37,64,.28)); transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+.logo:hover .logo-svg { transform: rotate(-6deg) scale(1.05); }
 .nav-links { display: none; gap: 4px; }
 .nav-links a { padding: 8px 14px; border-radius: 10px; color: var(--ink-2); font-weight: 600; font-size: 14px; position: relative; z-index: 0; }
 .nav-links a.active, .nav-links a:hover { color: var(--brand); }
@@ -371,7 +373,14 @@ button, a, select, .btn { touch-action: manipulation; -webkit-tap-highlight-colo
   .snap-row > * { flex: 0 0 78%; scroll-snap-align: start; }
 }
 
-/* Brand wordmark */
-.logo-accent { color: var(--brand); }
-.nav.on-dark .logo-accent, footer .logo-accent { color: #8fb6ff; }
-@media (max-width: 380px) { .logo { font-size: 16px; gap: 8px; } }
+/* Brand wordmark: italic serif name over a gold-ruled, letter-spaced "KENYA" */
+.wordmark { display: flex; flex-direction: column; line-height: 1; }
+.wm-name { font-family: var(--serif); font-style: italic; font-weight: 800; font-size: 25px; letter-spacing: -0.01em; color: var(--navy); }
+.wm-kenya { display: flex; align-items: center; gap: 7px; margin-top: 4px; font-family: var(--body); font-size: 9.5px; font-weight: 700; letter-spacing: .42em; text-transform: uppercase; color: var(--brand); }
+.wm-kenya::before { content: ''; width: 18px; height: 1.5px; border-radius: 1px; background: linear-gradient(90deg, #ffe08a, var(--amber)); }
+.nav.on-dark .wm-name, footer .wm-name { color: #fff; }
+.nav.on-dark .wm-kenya, footer .wm-kenya { color: #9cc0ff; }
+@media (max-width: 380px) { .wm-name { font-size: 21px; } .logo { gap: 8px; } }
+
+/* Italic serif accent, echoing the wordmark */
+.serif-accent { font-family: var(--serif); font-style: italic; font-weight: 700; letter-spacing: -0.01em; }

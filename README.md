@@ -1,4 +1,9 @@
-# KingMoversKenya · Nairobi
+<p align="center">
+  <img src="frontend/public/logo.svg" width="96" alt="KingMoversKenya logo" />
+</p>
+
+<h1 align="center"><em>KingMovers</em>Kenya</h1>
+<p align="center">Moving in Nairobi, made simple.</p>
 
 A moving assistant for Nairobi County: inventory checklists, instant quotes in KES, booking, live truck tracking,
 in-app chat, reviews, and role-based dashboards for clients, movers and admins.
